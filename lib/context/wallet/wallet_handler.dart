@@ -60,7 +60,7 @@ class WalletHandler {
   Future<void> _initialise() async {
     await fetchOwnBalance();
 
-    _contractService.listenTransfer((from, to, value) async {
+    _contractService.listenTransfer((from, to, value, value2) async {
       final fromMe = from.toString() == state.address;
       final toMe = to.toString() == state.address;
 

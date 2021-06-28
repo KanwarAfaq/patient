@@ -8,7 +8,7 @@ class AppConfig {
     params['ropsten'] = AppConfigParams(
         'https://ropsten.infura.io/v3/628074215a2449eb960b4fe9e95feb09',
         'wss://ropsten.infura.io/ws/v3/628074215a2449eb960b4fe9e95feb09',
-        '0xB2f428e6D1A0D8bdbf8f94371AE20Be8F7eFca4a');
+        '0xC283CdD60bb424515E9bB26A2ec4C4351Ce6F253');
   }
 
   Map<String, AppConfigParams> params = <String, AppConfigParams>{};

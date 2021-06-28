@@ -5,6 +5,10 @@ import 'package:patient/Signup/signup.dart';
 import 'package:patient/bgimage/bg_image.dart';
 import 'package:flutter/material.dart';
 
+import 'app_config.dart';
+import 'services_provider.dart';
+import 'wallet_main.dart';
+
 void main() {
   runApp(MaterialApp(
     debugShowMaterialGrid: false,
@@ -93,7 +97,25 @@ class FirstRoute extends StatelessWidget {
                                 fontSize: 30),
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 80,
+                        child: Container(
+                          child: TextButton(
+                              onPressed: () async {
+                                WidgetsFlutterBinding.ensureInitialized();
+                                final stores = await createProviders(
+                                    AppConfig().params['ropsten']);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MainApp(stores)),
+                                );
+                              },
+                              child: Text("Go To Wallet")),
+                        ),
+                      ),
                     ],
                   ),
                 ),

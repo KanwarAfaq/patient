@@ -1,5 +1,6 @@
 import 'package:patient/Login/login_with_otp%20copy.dart';
 import 'package:patient/Model/TokenModel.dart';
+import 'package:patient/components/copyButton/copy_button.dart';
 import 'package:patient/wallet_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -106,7 +107,7 @@ class _FinalDetailsState extends State<FinalDetails> {
                     },
                     onLongPress: () {
                       Clipboard.setData(
-                          new ClipboardData(text: widget.tokenModel.jwt));
+                          new ClipboardData(text: widget.result.toString()));
                     },
                     child: Container(
                       width: 280,
@@ -197,6 +198,9 @@ class _FinalDetailsState extends State<FinalDetails> {
                   );
                 },
               ),
+              CopyButton(
+                  text: const Text('Result'),
+                  value: widget.tokenModel.jwt.toString() + test.toString()),
               Center(
                   child: IconButton(
                 icon: Icon(Icons.send_sharp),
@@ -204,9 +208,16 @@ class _FinalDetailsState extends State<FinalDetails> {
                   WidgetsFlutterBinding.ensureInitialized();
                   final stores =
                       await createProviders(AppConfig().params['ropsten']!);
+
+                  tokenReceiver = widget.tokenModel.jwt.toString();
+                  testReceiver = test.toString();
+
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainApp(stores)),
+                    MaterialPageRoute(
+                        builder: (context) => MainApp(
+                              stores,
+                            )),
                   );
                 },
                 color: Colors.yellow,

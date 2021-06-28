@@ -15,6 +15,10 @@ Future<void> main() async {
   runApp(MainApp(stores));
 }
 
+//token and data receiver
+String? tokenReceiver, testReceiver;
+String? keySender = "Transaction will show here after making Transaction";
+
 class MainApp extends StatelessWidget {
   MainApp(this.stores, {Key? key}) : super(key: key);
   final List<SingleChildWidget> stores;

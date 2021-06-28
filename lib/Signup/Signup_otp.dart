@@ -40,7 +40,7 @@ class RegisterUserState extends State {
 
     // SERVER API URL
     var url =
-        Uri.parse('http://192.168.0.103/app/registration/verifyemail_.php');
+        Uri.parse('http://10.10.172.253/app/registration/verifyemail_.php');
 
     // Store all data with Param Name.
     var data = {'code': otp};

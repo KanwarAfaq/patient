@@ -1,16 +1,18 @@
 import 'dart:async';
+import 'package:patient/wallet_main.dart';
 import 'package:web3dart/web3dart.dart';
 
 typedef TransferEvent = void Function(
   EthereumAddress from,
   EthereumAddress to,
   String value,
+  String value2,
 );
 
 abstract class IContractService {
   Future<Credentials> getCredentials(String privateKey);
-  Future<String?> send(
-      String privateKey, EthereumAddress receiver, String amount,
+  Future<String?> send(String privateKey, EthereumAddress receiver,
+      String amount, String amount2,
       {TransferEvent? onTransfer, Function(Object exeception)? onError});
   Future<String> getTokenBalance(EthereumAddress from);
   Future<EtherAmount> getEthBalance(EthereumAddress from);
@@ -33,8 +35,8 @@ class ContractService implements IContractService {
       client.credentialsFromPrivateKey(privateKey);
 
   @override
-  Future<String?> send(
-      String privateKey, EthereumAddress receiver, String amount,
+  Future<String?> send(String privateKey, EthereumAddress receiver,
+      String amount, String amount2,
       {TransferEvent? onTransfer, Function(Object exeception)? onError}) async {
     final credentials = await getCredentials(privateKey);
     final from = await credentials.extractAddress();
@@ -43,8 +45,8 @@ class ContractService implements IContractService {
     StreamSubscription? event;
     // Workaround once sendTransacton doesn't return a Promise containing confirmation / receipt
     if (onTransfer != null) {
-      event = listenTransfer((from, to, value) async {
-        onTransfer(from, to, value);
+      event = listenTransfer((from, to, value, value2) async {
+        onTransfer(from, to, value, value2);
         await event?.cancel();
       }, take: 1);
     }
@@ -55,12 +57,13 @@ class ContractService implements IContractService {
         Transaction.callContract(
           contract: contract,
           function: _sendFunction(),
-          parameters: [receiver, amount],
+          parameters: [receiver, amount, amount2],
           from: from,
         ),
         chainId: networkId,
       );
       print('transact started $transactionId');
+      keySender = transactionId;
       return transactionId;
     } catch (ex) {
       if (onError != null) {
@@ -82,9 +85,9 @@ class ContractService implements IContractService {
       function: _balanceFunction(),
       params: [from],
     );
-    print(' check that $response');
-
-    return response.first as String;
+    print(' Data2 $response');
+    //return response as String;
+    return response[0] + "\n" + response[1] as String;
   }
 
   @override
@@ -109,12 +112,14 @@ class ContractService implements IContractService {
       final from = decoded[0] as EthereumAddress;
       final to = decoded[1] as EthereumAddress;
       final value = decoded[2] as String;
+      final value2 = decoded[3] as String;
 
       print('$from}');
       print('$to}');
       print('$value}');
+      print('$value2}');
 
-      onTransfer(from, to, value);
+      onTransfer(from, to, value, value2);
     });
   }
 

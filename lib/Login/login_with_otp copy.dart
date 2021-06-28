@@ -46,8 +46,7 @@ class RegisterUserState extends State {
     // ignore: non_constant_identifier_names
 
     // SERVER API URL
-    var url = Uri.parse(
-        'https://patienapplication.000webhostapp.com/app/login//login_send_otp.php');
+    var url = Uri.parse('http://192.168.0.103/app/login//login_send_otp.php');
 
     // Store all data with Param Name.
     var data = {'email': emial};

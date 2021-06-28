@@ -61,8 +61,8 @@ class RegisterUserState extends State {
     String password = "12345";
 
     // SERVER API URL
-    var url = Uri.parse(
-        'http://patientapp.epizy.com/app/registration/register_user.php');
+    var url =
+        Uri.parse('http://10.10.172.253/app/registration/register_user.php');
 
     // Store all data with Param Name.
     var data = {

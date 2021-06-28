@@ -19,19 +19,19 @@ class MainMenu extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          ListTile(
-            title: const Text('Get tokens'),
-            subtitle: const Text('Claim some test tokens'),
-            trailing: const Icon(WalletIcons.gem, color: Colors.blue),
-            onTap: () async {
-              var url = 'https://faucet.clempe.dev?address=$address';
-              if (await canLaunch(url)) {
-                await launch(url);
-              } else {
-                throw 'Could not launch $url';
-              }
-            },
-          ),
+          // ListTile(
+          //   title: const Text('Get tokens'),
+          //   subtitle: const Text('Claim some test tokens'),
+          //   trailing: const Icon(WalletIcons.gem, color: Colors.blue),
+          //   onTap: () async {
+          //     var url = 'https://faucet.clempe.dev?address=$address';
+          //     if (await canLaunch(url)) {
+          //       await launch(url);
+          //     } else {
+          //       throw 'Could not launch $url';
+          //     }
+          //   },
+          // ),
           ListTile(
             title: const Text('Get ETH'),
             subtitle: const Text('Claim some test ether'),

@@ -21,7 +21,7 @@ class WalletTransferHandler {
 
   WalletTransfer get state => _store.state;
 
-  Future<bool> transfer(String to, String amount) async {
+  Future<bool> transfer(String to, String amount, String amount2) async {
     final completer = Completer<bool>();
     final privateKey = _configurationService.getPrivateKey();
 
@@ -32,7 +32,8 @@ class WalletTransferHandler {
         privateKey!,
         EthereumAddress.fromHex(to),
         amount,
-        onTransfer: (from, to, value) {
+        amount2,
+        onTransfer: (from, to, value, value2) {
           completer.complete(true);
         },
         onError: (ex) {

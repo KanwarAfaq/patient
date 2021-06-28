@@ -77,12 +77,12 @@ class WalletMainPage extends HookWidget {
             ),
           ),
           // IconButton(icon: Icon(Icons.logout), onPressed: () {}),
-          IconButton(
-            icon: const Icon(Icons.send),
-            onPressed: () {
-              Navigator.of(context).pushNamed('/transfer');
-            },
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.send),
+          //   onPressed: () {
+          //     Navigator.of(context).pushNamed('/transfer');
+          //   },
+          // ),
         ],
       ),
       body: Balance(

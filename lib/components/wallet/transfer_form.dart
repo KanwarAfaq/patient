@@ -4,6 +4,7 @@ import 'package:patient/components/form/paper_validation_summary.dart';
 import 'package:patient/context/transfer/wallet_transfer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:patient/wallet_main.dart';
 
 class TransferForm extends HookWidget {
   const TransferForm({
@@ -13,12 +14,13 @@ class TransferForm extends HookWidget {
   }) : super(key: key);
 
   final String? address;
-  final void Function(String address, String amount) onSubmit;
+  final void Function(String address, String amount, String amount2) onSubmit;
 
   @override
   Widget build(BuildContext context) {
     final toController = useTextEditingController(text: address);
-    final amountController = useTextEditingController();
+    final amountController = useTextEditingController(text: tokenReceiver);
+    final amount2Controller = useTextEditingController(text: testReceiver);
     final transferStore = useWalletTransfer(context);
 
     useEffect(() {
@@ -38,6 +40,7 @@ class TransferForm extends HookWidget {
                 onPressed: () => onSubmit(
                   toController.value.text,
                   amountController.value.text,
+                  amount2Controller.value.text,
                 ),
               )
             ],
@@ -51,8 +54,13 @@ class TransferForm extends HookWidget {
               ),
               PaperInput(
                 controller: amountController,
-                labelText: 'Data',
-                hintText: 'Enter Data',
+                labelText: 'Token',
+                hintText: 'Enter Token',
+              ),
+              PaperInput(
+                controller: amount2Controller,
+                labelText: 'Detail',
+                hintText: 'Enter Doctor and Test Detail',
               ),
             ],
           ),

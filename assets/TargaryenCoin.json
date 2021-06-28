@@ -32,48 +32,6 @@
       "type": "event"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "delegate",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "numTokens",
-          "type": "uint256"
-        }
-      ],
-      "name": "approve",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "receiver",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "numTokens",
-          "type": "string"
-        }
-      ],
-      "name": "transfer",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "anonymous": false,
       "inputs": [
         {
@@ -92,6 +50,12 @@
           "indexed": false,
           "internalType": "string",
           "name": "tokens",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "tokens1",
           "type": "string"
         }
       ],
@@ -126,12 +90,41 @@
       "inputs": [
         {
           "internalType": "address",
+          "name": "delegate",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "numTokens",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "tokenOwner",
           "type": "address"
         }
       ],
       "name": "balanceOf",
       "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
         {
           "internalType": "string",
           "name": "",
@@ -210,6 +203,29 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "numTokens",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "numTokens1",
+          "type": "string"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
